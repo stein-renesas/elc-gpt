@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.11" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README-elc</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">:root {
+--brand: #2b0a8c;
+--accent: #e6007e;
+--ink: #1f2430;
+--muted: #667085;
+--line: #e4e7ec;
+--surface: #f7f7fb;
+}
+* {
+box-sizing: border-box;
+}
+html {
+scroll-behavior: smooth;
+}
+body {
+margin: 0 auto;
+max-width: 1120px;
+padding: 50px;
+color: var(--ink);
+background: #ffffff;
+font-family: "Segoe UI", Arial, sans-serif;
+line-height: 1.65;
+}
+a {
+color: var(--brand);
+}
+a:hover {
+color: var(--accent);
+}
+h1 {
+margin-top: 2.7rem;
+padding-bottom: 0.35rem;
+border-bottom: 2px solid var(--line);
+}
+h2 {
+margin-top: 2.4rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--line);
+}
+h3,
+h4,
+h5,
+h6 {
+margin-top: 2rem;
+}
+img {
+display: block;
+max-width: 100%;
+height: auto;
+margin: 1rem auto 0.35rem;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.25rem 0;
+}
+th,
+td {
+border: 1px solid var(--line);
+padding: 0.7rem;
+vertical-align: top;
+}
+th {
+background: var(--surface);
+text-align: left;
+}
+blockquote {
+margin: 1.2rem 0;
+padding: 0.7rem 1rem;
+border-left: 4px solid var(--brand);
+background: var(--surface);
+}
+code {
+font-family: Consolas, "Courier New", monospace;
+}
+pre {
+overflow-x: auto;
+padding: 1rem;
+border-radius: 8px;
+background: var(--surface);
+}
+
+body > h1:first-of-type {
+margin: -50px calc(50% - 50vw) 3rem;
+padding: 3.5rem max(50px, calc((100vw - 1120px) / 2));
+border: 0;
+background: linear-gradient(135deg, #250777, #3e16a3);
+color: #ffffff;
+font-size: clamp(2rem, 5vw, 3.5rem);
+line-height: 1.1;
+}
+@media (max-width: 640px) {
+body {
+padding: 20px;
+}
+body > h1:first-of-type {
+margin-top: -20px;
+padding: 2.5rem 20px;
+}
+}
+</style>
+</head>
+<body>
+<h1 id="elc-software-building-block">ELC Software Building Block</h1>
+<h2 id="overview">Overview</h2>
+<p>This Software Building Block (SBB) demonstrates basic use of the
+Renesas Event Link Controller (ELC) to connect a software-generated ELC
+event with timer events. The resulting event chain controls an LED
+without the application explicitly starting and stopping each timer in
+response to the generated event.</p>
+<p>This document covers only:</p>
+<ul>
+<li>FPB-RA0L1</li>
+<li>FPB-RA2E3</li>
+<li>FPB-RA4E2</li>
+<li>FPB-RA6E2</li>
+<li>FPB-RA8E1</li>
+</ul>
+<p>All five boards are listed as supported by the supplied
+<code>readme.txt</code>.</p>
+<p>The underlying timer implementation depends on the MCU capabilities.
+FPB-RA0L1 uses TAU timers. The supplied source selects GPT timers when
+<code>BSP_PERIPHERAL_GPT_PRESENT</code> is defined.</p>
+<h2 id="what-use-case-does-this-sbb-demonstrate">What use case does this
+SBB demonstrate?</h2>
+<p>The SBB demonstrates peripheral-to-peripheral event routing using
+ELC. A terminal keypress causes the application to generate
+<code>ELC_SOFTWARE_EVENT_0</code>; the timer behavior that follows is
+controlled by ELC links configured in the generated FSP project.</p>
+<h3 id="fpb-ra0l1-tau-event-chain">FPB-RA0L1: TAU event chain</h3>
+<p>For FPB-RA0L1, the supplied documentation describes this
+sequence:</p>
+<ol type="1">
+<li>The application generates an ELC software event.</li>
+<li>The software event starts TAU1.</li>
+<li>TAU1 runs in Delay Counter mode.</li>
+<li>The end-of-counter event from TAU1 starts TAU0.</li>
+<li>TAU0 runs in One-Shot Pulse Output mode.</li>
+<li>LED1 turns on after 1 second.</li>
+<li>LED1 remains on for 2 seconds until the requested pulse width
+expires.</li>
+</ol>
+<p>The source maps the first timer to <code>g_timer1_*</code> and the
+second timer to <code>g_timer0_*</code> when TAU is selected.</p>
+<h3 id="gpt-based-reference-configuration">GPT-based reference
+configuration</h3>
+<p>For the GPT timer path, the supplied documentation describes this
+sequence:</p>
+<ol type="1">
+<li>The application generates an ELC software event.</li>
+<li>The software event is the start source for GPT0 and GPT5.</li>
+<li>GPT0 operates in One-Shot mode.</li>
+<li>GPT5 operates in Saw-wave PWM mode.</li>
+<li>GPT0 counter overflow is the stop source for GPT5.</li>
+<li>The resulting PWM activity blinks the LED.</li>
+<li>LED blinking stops after 5 seconds when GPT0 expires.</li>
+</ol>
+<p>The source maps these roles to <code>g_timer_oneshot_*</code> and
+<code>g_timer_pwm_*</code> when GPT is selected.</p>
+<h2 id="hardware-requirements">Hardware requirements</h2>
+<ul>
+<li>1 x FPB-RA0L1, FPB-RA2E3, FPB-RA4E2, FPB-RA6E2, or FPB-RA8E1</li>
+<li>1 x appropriate USB cable for programming and debugging</li>
+</ul>
+<p>Connect the board USB debug port to the host PC.</p>
+<h3 id="fpb-ra0l1">FPB-RA0L1</h3>
+<p>The supplied README specifies:</p>
+<ul>
+<li>Place jumper <strong>J9 on pins 1-2</strong> to use the on-board
+debug functionality.</li>
+<li>Close <strong>E20</strong> to use P002 for LED1.</li>
+<li>Connect <strong>P409 (J1:10)</strong> to <strong>P002
+(J2:22)</strong> for LED1.</li>
+</ul>
+<h3 id="fpb-ra2e3">FPB-RA2E3</h3>
+<p>The supplied README specifies:</p>
+<ul>
+<li>Close <strong>E25, E28, E46, and E47</strong> to use J-Link On-Board
+VCOM for the UART terminal.</li>
+<li>Connect <strong>P102 (J4:10)</strong> to <strong>P213
+(J3:7)</strong> for LED1.</li>
+</ul>
+<h3 id="fpb-ra4e2">FPB-RA4E2</h3>
+<p>The supplied README lists FPB-RA4E2 as supported but does not specify
+an additional FPB-RA4E2 hardware connection.</p>
+<h3 id="fpb-ra6e2">FPB-RA6E2</h3>
+<p>The supplied README lists FPB-RA6E2 as supported but does not specify
+an additional FPB-RA6E2 hardware connection.</p>
+<h3 id="fpb-ra8e1">FPB-RA8E1</h3>
+<p>The supplied README lists FPB-RA8E1 as supported but does not specify
+an additional FPB-RA8E1 hardware connection.</p>
+<h2 id="what-does-the-sbb-core-code-do">What does the SBB core code
+do?</h2>
+<p>The reusable SBB layer is implemented by:</p>
+<ul>
+<li><code>elc_ep.c</code></li>
+<li><code>elc_ep.h</code></li>
+</ul>
+<p>The SBB core:</p>
+<ul>
+<li>Opens the configured ELC instance.</li>
+<li>Enables the configured ELC links.</li>
+<li>Generates <code>ELC_SOFTWARE_EVENT_0</code>.</li>
+<li>Closes the ELC instance.</li>
+<li>Initializes the first timer used by the event chain.</li>
+<li>Initializes the second timer used by the event chain.</li>
+<li>Enables external event triggers for both timers.</li>
+<li>Closes the timer instances.</li>
+<li>Abstracts TAU and GPT implementations behind the same SBB
+functions.</li>
+</ul>
+<p>The timer abstraction is selected at compile time from BSP peripheral
+feature macros.</p>
+<h2 id="demoreference-application-versus-reusable-sbb-code">Demo/reference
+application versus reusable SBB code</h2>
+<h3 id="reusable-sbb-code">Reusable SBB code</h3>
+<p><code>elc_ep.c</code> and <code>elc_ep.h</code> provide the reusable
+ELC/timer abstraction. This layer owns the ELC
+open/enable/software-event calls and maps the generic timer helper
+functions onto TAU or GPT APIs.</p>
+<h3 id="demoreference-application-code">Demo/reference application
+code</h3>
+<p><code>elc_example_app.c</code> and <code>elc_example_app.h</code>
+provide the terminal-driven demonstration. They:</p>
+<ul>
+<li>Initialize the UART console.</li>
+<li>Retrieve and display the FSP version.</li>
+<li>Display timer-mode information appropriate to the selected timer
+implementation.</li>
+<li>Initialize and enable ELC.</li>
+<li>Initialize and enable both timer instances.</li>
+<li>Wait for terminal input.</li>
+<li>Generate an ELC software event for every accepted keypress.</li>
+<li>Print the user prompt again after each generated event.</li>
+<li>Report errors, close the timer and ELC instances, flush the console,
+and enter a breakpoint.</li>
+</ul>
+<p>The demo entry point is:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> elc_example_app_run<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>The source identifies it as the single function called from
+<code>hal_entry.c</code>.</p>
+<h2 id="which-public-functions-should-i-look-at-first">Which public
+functions should I look at first?</h2>
+<h3 id="elc_init"><code>elc_init()</code></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t elc_init<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Opens the generated ELC instance through <code>R_ELC_Open()</code>
+using <code>g_elc_ctrl</code> and <code>g_elc_cfg</code>.</p>
+<h3 id="elc_enable"><code>elc_enable()</code></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t elc_enable<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Enables the configured ELC links using
+<code>R_ELC_Enable()</code>.</p>
+<h3 id="elc_event_gen"><code>elc_event_gen()</code></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t elc_event_gen<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Generates <code>ELC_SOFTWARE_EVENT_0</code> using
+<code>R_ELC_SoftwareEventGenerate()</code>. This is the
+application-visible trigger used to start the demonstrated event
+chain.</p>
+<h3 id="oneshot_timer_init"><code>oneshot_timer_init()</code></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t oneshot_timer_init<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Initializes the first timer role. With TAU it opens
+<code>g_timer1_ctrl/g_timer1_cfg</code>; with GPT it opens
+<code>g_timer_oneshot_ctrl/g_timer_oneshot_cfg</code>.</p>
+<h3 id="oneshot_timer_enable"><code>oneshot_timer_enable()</code></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t oneshot_timer_enable<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Enables the external-event triggers configured for the first timer
+role.</p>
+<h3 id="pwm_timer_init"><code>pwm_timer_init()</code></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t pwm_timer_init<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Initializes the second timer role. With TAU it uses the TAU PWM
+interface for <code>g_timer0_*</code>; with GPT it opens
+<code>g_timer_pwm_*</code> through the GPT interface.</p>
+<h3 id="pwm_timer_enable"><code>pwm_timer_enable()</code></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t pwm_timer_enable<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Enables the external-event triggers configured for the second timer
+role.</p>
+<h3 id="cleanup-functions">Cleanup functions</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> elc_deinit<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> oneshot_timer_deinit<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> pwm_timer_deinit<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>These close the ELC and timer instances when open.</p>
+<h2 id="what-configuration-assumptions-were-made-for-the-reference-boards">What
+configuration assumptions were made for the reference boards?</h2>
+<h3 id="elc-configuration">ELC configuration</h3>
+<p>The SBB expects generated ELC objects:</p>
+<pre class="text"><code>g_elc_ctrl
+g_elc_cfg</code></pre>
+<p>The actual event links are provided by the generated ELC
+configuration. The hand-written layer opens that configuration, enables
+it, and generates software event 0.</p>
+<h3 id="tau-configuration">TAU configuration</h3>
+<p>When <code>BSP_PERIPHERAL_TAU_PRESENT</code> is selected,
+<code>elc_ep.h</code> defines:</p>
+<ul>
+<li>Timer 1: <strong>TAU1</strong>, Delay Counter mode.</li>
+<li>Timer 2: <strong>TAU0</strong>, One-Shot Pulse Output mode.</li>
+<li>First timer configuration: <code>g_timer1_ctrl</code> /
+<code>g_timer1_cfg</code>.</li>
+<li>Second timer configuration: <code>g_timer0_ctrl</code> /
+<code>g_timer0_cfg</code>.</li>
+</ul>
+<p>The supplied README explicitly identifies FPB-RA0L1 as using this TAU
+behavior.</p>
+<h3 id="gpt-configuration">GPT configuration</h3>
+<p>When <code>BSP_PERIPHERAL_GPT_PRESENT</code> is selected,
+<code>elc_ep.h</code> defines:</p>
+<ul>
+<li>Timer 1: <strong>GPT0</strong>, One-Shot mode.</li>
+<li>Timer 2: <strong>GPT5</strong>, Saw-wave PWM mode.</li>
+<li>First timer configuration: <code>g_timer_oneshot_ctrl</code> /
+<code>g_timer_oneshot_cfg</code>.</li>
+<li>Second timer configuration: <code>g_timer_pwm_ctrl</code> /
+<code>g_timer_pwm_cfg</code>.</li>
+</ul>
+<p>The generated configuration supplies the external start/stop event
+relationships used when the timer <code>Enable</code> calls are
+made.</p>
+<h3 id="demonstrated-timing">Demonstrated timing</h3>
+<p>The documentation states:</p>
+<ul>
+<li>TAU path: LED1 turns on after <strong>1 second</strong> and remains
+on for <strong>2 seconds</strong>.</li>
+<li>GPT path: the LED blinks for <strong>5 seconds</strong> and then
+stops when the One-Shot timer expires.</li>
+</ul>
+<p>These values describe the supplied timer configuration.</p>
+<h3 id="terminal-input">Terminal input</h3>
+<p>The demonstration accepts any available terminal character as the
+request to generate another ELC software event. The source removes one
+character with <code>getchar()</code> before calling
+<code>elc_event_gen()</code>.</p>
+<h2 id="what-must-i-change-for-my-board-pins-clocks-timing-memory-task-priorities-or-middleware-setup">What
+must I change for my board, pins, clocks, timing, memory, task
+priorities, or middleware setup?</h2>
+<h3 id="elc-links">ELC links</h3>
+<p>The SBB depends on the links in <code>g_elc_cfg</code>. If the
+producer event, target peripheral, start event, or stop event changes,
+update the generated ELC configuration so that it matches the intended
+event chain.</p>
+<h3 id="timer-implementation">Timer implementation</h3>
+<p>The source supports TAU and GPT through compile-time BSP feature
+selection. The generated timer instances must match the macros selected
+by <code>elc_ep.h</code>.</p>
+<p>For the TAU path the SBB expects <code>g_timer1_*</code> and
+<code>g_timer0_*</code>. For the GPT path it expects
+<code>g_timer_oneshot_*</code> and <code>g_timer_pwm_*</code>.</p>
+<h3 id="pins-and-led-routing">Pins and LED routing</h3>
+<p>FPB-RA0L1 and FPB-RA2E3 require the external connections documented
+above. If the timer output or LED pin changes, update the board pin
+configuration and any required external connection accordingly.</p>
+<p>The supplied README does not provide additional pin-routing
+instructions for FPB-RA4E2, FPB-RA6E2, or FPB-RA8E1.</p>
+<h3 id="timer-timing">Timer timing</h3>
+<p>The 1-second delay, 2-second output pulse, and 5-second GPT sequence
+are supplied reference behaviors. If different timing is needed, change
+the applicable generated timer configuration while preserving the
+required ELC start/stop relationships.</p>
+<h3 id="clocks">Clocks</h3>
+<p>The supplied files do not state board-specific TAU/GPT source-clock
+frequencies or clock-divider settings for the five boards. Changes to
+clock configuration must therefore be validated against the generated
+timer configuration and desired timing.</p>
+<h3 id="memory">Memory</h3>
+<p>The supplied source does not provide a measured RAM or ROM footprint
+for the SBB.</p>
+<h3 id="task-priorities-and-execution-model">Task priorities and
+execution model</h3>
+<p>The reference application does not define an RTOS or task priorities.
+It remains in a foreground loop waiting for terminal input. The
+demonstrated timer-to-timer behavior is configured through ELC rather
+than being sequenced by foreground application calls after the initial
+software event.</p>
+<h3 id="console-middleware">Console middleware</h3>
+<p>The console is used only by the reference application to initiate
+demonstrations and display information/errors. The reusable ELC/timer
+layer does not require the terminal menu itself.</p>
+<h2 id="dependencies">Dependencies</h2>
+<h3 id="renesas-fsp-elc-driver">Renesas FSP ELC driver</h3>
+<p>The SBB directly uses:</p>
+<ul>
+<li><code>R_ELC_Open()</code></li>
+<li><code>R_ELC_Enable()</code></li>
+<li><code>R_ELC_SoftwareEventGenerate()</code></li>
+<li><code>R_ELC_Close()</code></li>
+</ul>
+<h3 id="tau-path">TAU path</h3>
+<p>When <code>BSP_PERIPHERAL_TAU_PRESENT</code> is selected, the
+abstraction uses:</p>
+<ul>
+<li><code>R_TAU_Open()</code></li>
+<li><code>R_TAU_Close()</code></li>
+<li><code>R_TAU_Enable()</code></li>
+<li><code>R_TAU_PWM_Open()</code></li>
+<li><code>R_TAU_PWM_Close()</code></li>
+<li><code>R_TAU_PWM_Enable()</code></li>
+</ul>
+<h3 id="gpt-path">GPT path</h3>
+<p>When <code>BSP_PERIPHERAL_GPT_PRESENT</code> is selected, the
+abstraction uses:</p>
+<ul>
+<li><code>R_GPT_Open()</code></li>
+<li><code>R_GPT_Close()</code></li>
+<li><code>R_GPT_Enable()</code></li>
+</ul>
+<h3 id="generated-fsp-configuration">Generated FSP configuration</h3>
+<p>The SBB includes <code>hal_data.h</code> and relies on generated ELC
+and timer control/configuration objects.</p>
+<h3 id="consolereference-application">Console/reference application</h3>
+<p>The demo uses:</p>
+<ul>
+<li><code>console/uart_console.h</code></li>
+<li><code>uart_console_init()</code></li>
+<li><code>uart_console_has_char()</code></li>
+<li><code>uart_console_flush()</code></li>
+<li><code>printf()</code></li>
+<li><code>getchar()</code></li>
+<li><code>R_FSP_VersionGet()</code></li>
+<li><code>__BKPT()</code> for its error trap</li>
+</ul>
+<h2 id="serial-terminal-configuration">Serial terminal
+configuration</h2>
+<p>The supplied README specifies:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Port</td>
+<td>Port provided by J-Link On-Board</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>115200</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>8 bit</td>
+</tr>
+<tr>
+<td>Parity</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Stop bits</td>
+<td>1 bit</td>
+</tr>
+<tr>
+<td>Flow control</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p>For Tera Term:</p>
+<ul>
+<li>Receive newline: <strong>CR</strong></li>
+<li>Transmit newline: <strong>CR</strong></li>
+<li><strong>Local echo</strong> enabled</li>
+</ul>
+<h2 id="what-behavior-and-performance-were-demonstrated-or-measured">What
+behavior and performance were demonstrated or measured?</h2>
+<h3 id="demonstrated-behavior">Demonstrated behavior</h3>
+<p>The supplied source and documentation demonstrate:</p>
+<ul>
+<li>Opening and enabling the ELC.</li>
+<li>Generating <code>ELC_SOFTWARE_EVENT_0</code> in response to terminal
+input.</li>
+<li>Starting timer activity from an ELC software event.</li>
+<li>Chaining timer events through ELC.</li>
+<li>Using TAU Delay Counter and One-Shot Pulse Output modes on the TAU
+path.</li>
+<li>Using GPT One-Shot and Saw-wave PWM modes on the GPT path.</li>
+<li>Controlling visible LED behavior as the output of that event
+chain.</li>
+</ul>
+<h3 id="demonstrated-timing-1">Demonstrated timing</h3>
+<p>For FPB-RA0L1’s documented TAU path, LED1 turns on after 1 second and
+stays on for 2 seconds.</p>
+<p>For the documented GPT path, LED blinking stops after 5 seconds when
+GPT0 expires.</p>
+<h3 id="performance-measurements">Performance measurements</h3>
+<p>The supplied files do <strong>not</strong> report measured ELC
+propagation latency, timer accuracy, PWM frequency, jitter, interrupt
+latency, CPU utilization, or memory footprint.</p>
+<p>The 1-second, 2-second, and 5-second values describe configured
+demonstration behavior, not ELC performance measurements. This SBB
+should therefore be treated as a functional event-routing reference
+rather than a performance benchmark.</p>
+<h2 id="what-files-are-safe-to-modify-and-what-files-are-generated-preset-or-demo-only">What
+files are safe to modify and what files are generated, preset, or
+demo-only?</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>File</th>
+<th>Classification</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>elc_ep.c</code></td>
+<td>Reusable SBB implementation</td>
+<td>Modify when intentionally changing the ELC wrapper, software-event
+selection, timer abstraction, or enable/cleanup behavior.</td>
+</tr>
+<tr>
+<td><code>elc_ep.h</code></td>
+<td>Reusable SBB interface and timer abstraction</td>
+<td>Modify carefully when changing public functions, TAU/GPT mappings,
+timer instances, or timer modes.</td>
+</tr>
+<tr>
+<td><code>elc_example_app.c</code></td>
+<td>Demo/reference application</td>
+<td>Appropriate location for changing console interaction, application
+sequencing, presentation, and error handling.</td>
+</tr>
+<tr>
+<td><code>elc_example_app.h</code></td>
+<td>Demo/reference application interface</td>
+<td>Contains the demo entry point and TAU/GPT-specific
+informational/status text.</td>
+</tr>
+<tr>
+<td><code>readme.txt</code></td>
+<td>Existing example documentation</td>
+<td>Source for supported boards, board-specific hardware setup,
+demonstrated ELC relationships, timing, and terminal settings.</td>
+</tr>
+</tbody>
+</table>
+<p>The SBB depends on generated configuration through
+<code>hal_data.h</code>. The supplied file set does not enumerate the
+generated project files themselves, so those generated files should be
+treated separately from the hand-maintained SBB and
+reference-application sources.</p>
+<h2 id="what-happens-if-i-modify-the-source-and-later-adopt-a-newer-sbb-release">What
+happens if I modify the source and later adopt a newer SBB release?</h2>
+<p>Local modifications to <code>elc_ep.c</code> or <code>elc_ep.h</code>
+create differences in the reusable SBB layer that may overlap a future
+SBB update.</p>
+<p>To reduce upgrade conflicts:</p>
+<ul>
+<li>Keep terminal prompts, display strings, and application-level
+sequencing in <code>elc_example_app.*</code>.</li>
+<li>Prefer the generated FSP configuration for ELC link selection, timer
+modes, timer periods, channels, and pin configuration when those are
+configuration concerns.</li>
+<li>Keep changes to the TAU/GPT abstraction in <code>elc_ep.h</code>
+focused and documented.</li>
+<li>Keep generated FSP files separate from hand-maintained SBB
+code.</li>
+<li>When adopting a newer SBB release, compare the new
+<code>elc_ep.c</code> and <code>elc_ep.h</code> with the locally
+modified versions before carrying changes forward.</li>
+<li>Revalidate ELC software-event routing, timer start/stop event links,
+timer implementation selection, hardware pin routing, and demonstrated
+LED timing after integration.</li>
+</ul>
+<p>The supplied files do not define an automated source-migration or
+compatibility mechanism for later SBB releases. Compatibility must
+therefore be validated by the integrating project.</p>
+<h2 id="recommended-reading-order">Recommended reading order</h2>
+<ol type="1">
+<li><strong><code>elc_ep.h</code></strong> to understand the TAU/GPT
+abstraction, generated timer object mappings, modes, and public SBB
+functions.</li>
+<li><strong><code>elc_ep.c</code></strong> to see the ELC
+open/enable/software-event operations and timer initialization/enable
+wrappers.</li>
+<li><strong><code>elc_example_app.c</code></strong> to understand
+initialization order and how terminal input causes a software ELC
+event.</li>
+<li><strong><code>elc_example_app.h</code></strong> to see the
+TAU/GPT-specific demonstration behavior and application entry
+point.</li>
+<li><strong><code>readme.txt</code></strong> for the original
+supported-board list, FPB-RA0L1/FPB-RA2E3 hardware connections, timing
+description, and terminal configuration.</li>
+</ol>
+</body>
+</html>
